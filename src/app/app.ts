@@ -19,10 +19,17 @@ import {MOCK_RECIPES} from './mock-recipes';
 })
 export class App {
   protected readonly recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
+  protected readonly counter = signal(0);
   protected showCarbonara(): void {
     this.recipe.set(MOCK_RECIPES[0]);
   }
   protected showCapreseSalad(): void {
     this.recipe.set(MOCK_RECIPES[1]);
+  }
+  protected increment(): void {
+    this.counter.update(counter => counter + 1);
+  }
+  protected decrement(): void {
+    this.counter.update(counter => counter - 1);
   }
 }

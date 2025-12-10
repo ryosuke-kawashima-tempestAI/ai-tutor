@@ -4,5 +4,11 @@
 <p>
   {{ recipe().description }}
 </p>
+<p>
+  Servings: {{ counter() }}
+</p>
+
 <button (click)="showCarbonara()">Carbonara</button>
 <button (click)="showCapreseSalad()">CapreseSalad</button>
+<button (click)="increment()">+</button>
+<button (click)="decrement()">-</button>

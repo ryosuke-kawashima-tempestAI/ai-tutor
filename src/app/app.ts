@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.dev/license
  */
-import {Component, signal} from '@angular/core';
+import {Component, computed, signal} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {RecipeModel} from './models';
 import {MOCK_RECIPES} from './mock-recipes';
@@ -19,7 +19,8 @@ import {MOCK_RECIPES} from './mock-recipes';
 })
 export class App {
   protected readonly recipe = signal<RecipeModel>(MOCK_RECIPES[0]);
-  protected readonly counter = signal(0);
+  protected readonly servings = signal(0);
+
   protected showCarbonara(): void {
     this.recipe.set(MOCK_RECIPES[0]);
   }
@@ -27,9 +28,21 @@ export class App {
     this.recipe.set(MOCK_RECIPES[1]);
   }
   protected increment(): void {
-    this.counter.update(counter => counter + 1);
+    this.servings.update(counter => counter + 1);
   }
   protected decrement(): void {
-    this.counter.update(counter => counter - 1);
+    this.servings.update(counter => counter - 1);
   }
+  protected readonly AdjustedIngredients = computed(() => {
+    const originalIngredients = this.recipe().ingredients;
+    const curServings = this.servings();
+    const newIngredients = originalIngredients.map(ingredient => {
+      return {
+        "name": ingredient["name"],
+        "quantity": ingredient["quantity"] * curServings,
+        "unit": ingredient["unit"],
+      };
+    });
+    return newIngredients;
+  })
 }

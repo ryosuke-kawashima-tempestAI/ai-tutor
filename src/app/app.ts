@@ -37,6 +37,7 @@ export class App {
     const originalIngredients = this.recipe().ingredients;
     const curServings = this.servings();
     const newIngredients = originalIngredients.map(ingredient => {
+      // returns a JSON object with the same keys as the original object  
       return {
         "name": ingredient["name"],
         "quantity": ingredient["quantity"] * curServings,

@@ -1,5 +1,7 @@
 import { RecipeModel } from './models';
 
+export class App {}
+
 export const MOCK_RECIPES: RecipeModel[] = [
   {
     id: 1,

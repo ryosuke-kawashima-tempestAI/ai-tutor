@@ -1,0 +1,14 @@
+@if (recipe(); as recipe) {
+    <h2>{{ recipe.name }}</h2>
+    <p>{{ recipe.description }}</p>
+    <img [src]="recipe.imgUrl" [attr.alt]="recipe.name" />
+    <div>
+        <h3>Servings: {{ servings() }}</h3>
+        <button (click)="decrement()">-</button>
+        <button (click)="increment()">+</button>
+    </div>
+    <h4>
+        Ingredients (Adjusted for {{ servings() }} servings)
+    </h4>
+    <pre>{{ adjustedIngredients() | json }}</pre>
+}

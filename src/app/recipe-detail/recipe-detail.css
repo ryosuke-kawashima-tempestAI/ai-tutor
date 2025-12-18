@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 400px;
+    /* padding */
+    padding: 24px;
+    margin: 16px;
+}
+.detail-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+h2 {
+    font-size: 1.75rem; /* xxx times the base font size */
+    font-weight: 700;
+    margin: 0;
+}
+p {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+}
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}

@@ -1,15 +1,1 @@
-<h1>
-{{ recipe().name }}
-</h1>
-<img [src]="recipe().imgUrl" [alt]="recipe().name">
-<p>
-  {{ recipe().description }}
-</p>
-<p>
-  Servings: {{ servings() }}
-</p>
-
-<button (click)="showCarbonara()">Carbonara</button>
-<button (click)="showCapreseSalad()">CapreseSalad</button>
-<button (click)="increment()">+</button>
-<button (click)="decrement()">-</button>
+<app-recipe-list></app-recipe-list>

@@ -22,7 +22,7 @@ export class RecipeDetail {
       return counter - 1;
     });
   }
-  protected readonly AdjustedIngredients = computed(() => {
+  protected readonly adjustedIngredients = computed(() => {
     const originalIngredients = this.recipe()?.ingredients;
     const curServings = this.servings();
     const newIngredients = originalIngredients?.map(ingredient => {

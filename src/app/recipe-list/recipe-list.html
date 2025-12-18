@@ -1,4 +1,5 @@
-<app-recipe-list>
-    <h2> My Recipes </h2>
-    <app-recipe-detail [recipe]="activeRecipe()"></app-recipe-detail>
-</app-recipe-list>
+<h2> My Recipes </h2>
+<button (click)="showCarbonara()">Carbonara</button>
+<button (click)="showCapreseSalad()">Caprese Salad</button>
+
+<app-recipe-detail [recipe]="activeRecipe()"></app-recipe-detail>

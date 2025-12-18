@@ -1,5 +1,11 @@
-<h2> My Recipes </h2>
-<button (click)="showCarbonara()">Carbonara</button>
-<button (click)="showCapreseSalad()">Caprese Salad</button>
+<div class="recipe-selector">
+  <button (click)="showCarbonara()">Show Carbonara</button>
+  <button (click)="showCapreseSalad()">Show Caprese Salad</button>
+</div>
 
+<!-- 
+  This is the crucial line:
+  We are passing the `activeRecipe` signal from this component
+  to the `recipe` input of the child component.
+-->
 <app-recipe-detail [recipe]="activeRecipe()"></app-recipe-detail>

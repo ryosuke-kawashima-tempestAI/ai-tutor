@@ -4,36 +4,40 @@ import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-detail',
+  standalone: true,
   imports: [JsonPipe],
   templateUrl: './recipe-detail.html',
   styleUrl: './recipe-detail.css',
 })
 export class RecipeDetail {
   // you receive this from RecipeList
-  protected readonly recipe = input<RecipeModel>();
+  readonly recipe = input.required<RecipeModel>();
   protected readonly servings = signal(1);
+
   protected increment(): void {
-    this.servings.update(counter => {
-      return counter + 1;
-    });
+    this.servings.update(counter => counter + 1);
   }
+
   protected decrement(): void {
-    this.servings.update(counter => {
-      return counter - 1;
-    });
+    // Prevents servings from going below 1
+    this.servings.update(counter => (counter > 1 ? counter - 1 : 1));
   }
+
   protected readonly adjustedIngredients = computed(() => {
-    const originalIngredients = this.recipe()?.ingredients;
+    const currentRecipe = this.recipe(); // Read signal once
+
+    // Guard Clause: If there's no recipe yet, return an empty array.
+    if (!currentRecipe) {
+      return [];
+    }
+
     const curServings = this.servings();
-    const newIngredients = originalIngredients?.map(ingredient => {
-      const adjustedIngredient = {
-        "name": ingredient["name"],
-        "quantity": ingredient["quantity"] * curServings,
-        "unit": ingredient["unit"]
-      };
-      return adjustedIngredient;
-    });
-    // this is the return value of computed function.
-    return newIngredients;
+    
+    // Now that we have the guard, we can safely access ingredients.
+    return currentRecipe.ingredients.map(ingredient => ({
+      name: ingredient.name,
+      quantity: ingredient.quantity * curServings,
+      unit: ingredient.unit,
+    }));
   });
 }

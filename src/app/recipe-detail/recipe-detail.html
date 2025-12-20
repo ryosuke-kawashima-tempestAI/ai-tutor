@@ -3,7 +3,11 @@
     <img [src]="recipe.imgUrl" [attr.alt]="recipe.name" />
 
     <div class="details">
-      <h2>{{ recipe.name }}</h2>
+      <h2>{{ recipe.name }}
+        @if (recipe.isFavorite; as isFavorite) {
+          <p>★</p>
+        }
+      </h2>
       <p>{{ recipe.description }}</p>
 
       <div class="servings-control">
@@ -14,7 +18,13 @@
 
       <h4>Ingredients (Adjusted for {{ servings() }} servings)</h4>
       <!-- We will replace this with a @for loop in our next step -->
-      <pre>{{ adjustedIngredients() | json }}</pre>
+      <ul>
+        @for (ingredient of adjustedIngredients(); track ingredient.name) {
+          <li>
+            {{ ingredient.name }} - {{ ingredient.quantity }} {{ ingredient.unit }}
+          </li>
+        }
+      </ul>
     </div>
   </div>
 }

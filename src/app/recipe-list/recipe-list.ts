@@ -11,6 +11,7 @@ import { RecipeDetail } from '../recipe-detail/recipe-detail';
   styleUrl: './recipe-list.css'
 })
 export class RecipeList {
+  protected readonly recipes = MOCK_RECIPES;
   protected readonly activeRecipe = signal<RecipeModel>(MOCK_RECIPES[0]);
 
   protected showCarbonara(): void {

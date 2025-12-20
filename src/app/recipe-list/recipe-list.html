@@ -1,6 +1,16 @@
 <div class="recipe-selector">
-  <button (click)="showCarbonara()">Show Carbonara</button>
-  <button (click)="showCapreseSalad()">Show Caprese Salad</button>
+  <button (click)="showCarbonara()">
+    Show Carbonara
+    @if (recipes[0].isFavorite; as isFavorite) {
+      <p>★</p>
+    }
+  </button>
+  <button (click)="showCapreseSalad()">
+    Show Caprese Salad
+    @if (recipes[1].isFavorite; as isFavorite) {
+      <p>★</p>
+    }
+  </button>
 </div>
 
 <!-- 

@@ -1,24 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
+import { RecipeDetail } from '../recipe-detail/recipe-detail';
 import { MOCK_RECIPES } from '../mock-recipes';
 import { RecipeModel } from '../models';
-import { RecipeDetail } from '../recipe-detail/recipe-detail';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
-  imports: [RecipeDetail],
+  imports: [RecipeDetail, RouterLink],
   templateUrl: './recipe-list.html',
-  styleUrl: './recipe-list.css'
+  styleUrl: './recipe-list.css',
 })
 export class RecipeList {
-  protected readonly recipes = MOCK_RECIPES;
-  protected readonly activeRecipe = signal<RecipeModel>(MOCK_RECIPES[0]);
+  readonly searchTerm = input<string>('');
+  protected readonly recipes = signal<RecipeModel[]>(MOCK_RECIPES);
 
-  protected showCarbonara(): void {
-    this.activeRecipe.set(MOCK_RECIPES[0]);
-  }
-
-  protected showCapreseSalad(): void {
-    this.activeRecipe.set(MOCK_RECIPES[1]);
-  }
+  protected readonly filteredRecipes = computed(() => {
+    return this.recipes().filter((recipe) => {
+      const recipeName = recipe.name;
+      return recipeName.toLowerCase().includes(this.searchTerm().toLocaleLowerCase());
+    });
+  });
 }

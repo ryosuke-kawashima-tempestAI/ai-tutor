@@ -1,21 +1,10 @@
-<div class="recipe-selector">
-  <button (click)="showCarbonara()">
-    Show Carbonara
-    @if (recipes[0].isFavorite; as isFavorite) {
-      <p>★</p>
-    }
-  </button>
-  <button (click)="showCapreseSalad()">
-    Show Caprese Salad
-    @if (recipes[1].isFavorite; as isFavorite) {
-      <p>★</p>
-    }
-  </button>
-</div>
-
-<!-- 
-  This is the crucial line:
-  We are passing the `activeRecipe` signal from this component
-  to the `recipe` input of the child component.
--->
-<app-recipe-detail [recipe]="activeRecipe()"></app-recipe-detail>
+<ul>
+  @for (recipe of filteredRecipes(); track recipe.id) {
+    <li>
+      <a [routerLink]="['/recipes', recipe.id]">{{ recipe.name }}</a>
+      @if (recipe.isFavorite) {
+        <span> ★</span>
+      }
+    </li>
+  }
+</ul>

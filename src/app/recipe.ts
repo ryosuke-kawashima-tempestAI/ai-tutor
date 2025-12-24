@@ -9,4 +9,7 @@ export class Recipe {
   public getRecipes() {
     return this.recipes;
   }
+  public getRecipeById(id: number) {
+    return this.recipes.find((recipe) => recipe.id === id);
+  }
 }

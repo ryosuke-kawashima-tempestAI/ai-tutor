@@ -1,10 +1,1 @@
-<h1>Recipe Box</h1>
-
-<input 
-  type="text" 
-  [ngModel]="searchTerm()" 
-  (ngModelChange)="searchTerm.set($event)" 
-  placeholder="Search recipes"
-/>
-
-<app-recipe-list [searchTerm]="searchTerm()" />
+<router-outlet></router-outlet>

@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { RecipeList } from './recipe-list/recipe-list';
-import { FormsModule } from '@angular/forms';
+// import { RecipeList } from './recipe-list/recipe-list';
+// import { FormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RecipeList, FormsModule],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

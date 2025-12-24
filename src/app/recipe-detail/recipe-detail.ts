@@ -1,4 +1,6 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Recipe } from '../recipe';
 import { RecipeModel } from '../models';
 // import { JsonPipe } from '@angular/common';
 
@@ -10,8 +12,19 @@ import { RecipeModel } from '../models';
   styleUrl: './recipe-detail.css',
 })
 export class RecipeDetail {
+  private readonly route = inject(ActivatedRoute);
+  private readonly recipeService = inject(Recipe);
+  protected readonly recipe = signal<RecipeModel | undefined>(undefined);
+  constructor() {
+    const recipeId = this.route.snapshot.paramMap.get('id');
+    if (recipeId) {
+      const foundRecipe = this.recipeService.getRecipeById(+recipeId);
+      this.recipe.set(foundRecipe);
+    }
+  }
+
   // you receive this from RecipeList
-  readonly recipe = input.required<RecipeModel>();
+  // readonly recipe = input.required<RecipeModel>();
   protected readonly servings = signal(1);
 
   protected increment(): void {

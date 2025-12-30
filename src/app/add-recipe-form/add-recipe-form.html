@@ -1,0 +1,8 @@
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <label for="name-input">Name: </label>
+    <input id="name-input" type="text" formControlName="name">
+    <label for="description-input">Description: </label>
+    <input id="description-input" type="text" formControlName="Description">
+
+    <button type="submit" [disabled]="!recipeForm.valid">Submit</button>"
+</form>

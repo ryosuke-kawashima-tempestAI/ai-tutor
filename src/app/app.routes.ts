@@ -8,6 +8,7 @@
 import {Routes} from '@angular/router';
 import { RecipeList } from './recipe-list/recipe-list';
 import { RecipeDetail } from './recipe-detail/recipe-detail';
+import { AddRecipeForm } from './add-recipe-form/add-recipe-form';
 
 export const routes: Routes = [
   {
@@ -17,5 +18,14 @@ export const routes: Routes = [
   {
     path: 'recipes/:id',
     component: RecipeDetail,
+  },
+  {
+    path: 'add-recipe',
+    component: AddRecipeForm,
+  },
+  {
+    path: '',
+    redirectTo: '/recipes',
+    pathMatch: 'full',
   }
 ];
